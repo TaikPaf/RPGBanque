@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+{% for compteCourant in compteCourants %}
+    <div class="gauge-chart">
+        <canvas id="gaugeBasic" width="180" height="110" data-plugin-options="{ "value": {{ compteCourant.solde }}, "maxValue": 3000 }"></canvas>
+        <strong>Design</strong>
+        <label id="gaugeBasicTextfield">{{ compteCourant.solde }}</label>
+    </div>
+{% endfor %}
+{% endblock %}

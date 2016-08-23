@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Transfert</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ transfert.id }}</td>
+            </tr>
+            <tr>
+                <th>Somme</th>
+                <td>{{ transfert.somme }}</td>
+            </tr>
+            <tr>
+                <th>Validationcrediteur</th>
+                <td>{% if transfert.validationCrediteur %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Validationdebiteur</th>
+                <td>{% if transfert.validationDebiteur %}Yes{% else %}No{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('transfert_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('transfert_edit', { 'id': transfert.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

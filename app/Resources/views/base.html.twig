@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}RPGBank -{% endblock %}</title>
+        {% block stylesheets %}{% endblock %}
+
+        <!-- Mobile Metas -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+        <!-- Global stylesheets -->
+
+
+        <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
+        <link href="{{ asset('assets/css/icons/icomoon/styles.css') }}" rel="stylesheet" type="text/css">
+        <link href="{{ asset('assets/css/minified/bootstrap.min.css') }}" rel="stylesheet" type="text/css">
+        <link href="{{ asset('assets/css/minified/core.min.css') }}" rel="stylesheet" type="text/css">
+        <link href="{{ asset('assets/css/minified/components.min.css') }}" rel="stylesheet" type="text/css">
+        <link href="{{ asset('assets/css/minified/colors.min.css') }}" rel="stylesheet" type="text/css">
+
+        <!-- /global stylesheets -->
+
+        <!-- Core JS files -->
+        <script type="text/javascript" src="{{ asset('assets/js/pages/dashboard.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('assets/js/plugins/loaders/pace.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('assets/js/core/libraries/jquery.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('assets/js/core/libraries/bootstrap.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('assets/js/plugins/loaders/blockui.min.js') }}"></script>
+
+        <script type="text/javascript" src="http://code.highcharts.com/highcharts.js"></script>
+
+        <!-- /core JS files -->
+
+        <!-- Theme JS files -->
+
+        <script type="text/javascript" src="{{ asset('assets/js/plugins/forms/styling/switchery.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('assets/js/plugins/forms/styling/uniform.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('assets/js/plugins/forms/selects/bootstrap_multiselect.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('assets/js/plugins/ui/moment/moment.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('assets/js/plugins/pickers/daterangepicker.js') }}"></script>
+
+        <script type="text/javascript" src="{{ asset('assets/js/core/app.js') }}"></script>
+        <script src="https://use.fontawesome.com/4e326f13dc.js"></script>
+
+
+
+        <!-- /theme JS files -->
+
+
+    </head>
+    <body>
+
+    <!-- Main navbar -->
+    <div class="navbar navbar-inverse">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="{{ path('homepage') }}"><img src="{{ asset('assets/images/logo_light.png') }}" alt=""></a>
+
+            <ul class="nav navbar-nav visible-xs-block">
+                <li><a data-toggle="collapse" data-target="#navbar-mobile"><i class="icon-tree5"></i></a></li>
+                <li><a class="sidebar-mobile-main-toggle"><i class="icon-paragraph-justify3"></i></a></li>
+            </ul>
+        </div>
+
+        <div class="navbar-collapse collapse" id="navbar-mobile">
+            <ul class="nav navbar-nav">
+                <li><a class="sidebar-control sidebar-main-toggle hidden-xs"><i class="icon-paragraph-justify3"></i></a></li>
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+
+
+
+                <li class="dropdown dropdown-user">
+                    <a class="dropdown-toggle" data-toggle="dropdown">
+                        <img src="{{ asset('assets/images/placeholder.jpg') }}" alt="">
+                        <span>{{ app.user.username|upper }}</span>
+                        <i class="caret"></i>
+                    </a>
+
+                    <ul class="dropdown-menu dropdown-menu-right">
+                        <li><a href="#"><i class="icon-user-plus"></i> My profile</a></li>
+                        <li><a href="#"><span class="badge bg-teal-400 pull-right">58</span> <i class="icon-comment-discussion"></i> Messages</a></li>
+                        <li class="divider"></li>
+                        <li><a href="{{ path('fos_user_security_logout') }}"><i class="icon-switch2"></i> Logout</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!-- /main navbar -->
+
+
+    <!-- Page container -->
+    <div class="page-container">
+
+        <!-- Page content -->
+        <div class="page-content">
+
+            <!-- Main sidebar -->
+            <div class="sidebar sidebar-main">
+                <div class="sidebar-content">
+
+                    <!-- User menu -->
+                    <div class="sidebar-user">
+                        <div class="category-content">
+                            <div class="media">
+                                <a href="#" class="media-left"><img src="{{ asset('assets/images/placeholder.jpg') }}" class="img-circle img-sm" alt=""></a>
+                                <div class="media-body">
+                                    <span class="media-heading text-semibold">{{ app.user.username|upper }}</span>
+                                    <div class="text-size-mini text-muted">
+                                       {{ app.user.rank }}
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /user menu -->
+
+
+                    <!-- Main navigation -->
+                    <div class="sidebar-category sidebar-category-visible">
+                        <div class="category-content no-padding">
+                            <ul class="navigation navigation-main navigation-accordion">
+
+                                <!-- Main -->
+                                <li class="navigation-header"><span>Général</span> <i class="icon-menu" title="Main pages"></i></li>
+                                <li class=""><a href="{{ path('general') }}"><i class="icon-home4"></i> <span>Tableau de bord</span></a></li>
+                                <li>
+                                    <a href="#"><i class="fa fa-credit-card"></i> <span>Virements</span></a>
+                                    <ul>
+                                        <li><a href="{{ path('transfert_new') }}">Nouveau virement</a></li>
+                                        <li><a href="{{ path('transfert_histo') }}">Mes virements</a></li>
+
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="#"><i class="fa fa-cart-arrow-down"></i> <span>Factures {% if nbFactureWait is defined and nbFactureWait > 0  %} <span class="label bg-danger"> {{ nbFactureWait }}</span>{% endif %}</span></a>
+                                    <ul>
+                                        <li><a href="{{ path('facture_show') }}" id="layout1">Factures en attente {% if nbFactureWait is defined and nbFactureWait > 0 %} <span class="label bg-danger"> {{ nbFactureWait }}</span>{% endif %}
+                                            </a></li>
+                                        <li><a href="{{ path('facture_histo') }}" id="layout2">Mes factures</a></li>
+                                        {% if app.user.rank == "commerce" %}
+                                        <li><a href="{{ path('facture_new') }}" id="layout3">Créer une facture</a></li>
+                                        {% endif %}
+
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="#"><i class="fa fa-gears"></i> <span>Mon compte</span></a>
+                                    <ul>
+                                        <li><a href="colors_primary.html">Primary palette</a></li>
+                                        <li><a href="colors_danger.html">Danger palette</a></li>
+                                        <li><a href="colors_success.html">Success palette</a></li>
+                                        <li><a href="colors_warning.html">Warning palette</a></li>
+                                        <li><a href="colors_info.html">Info palette</a></li>
+                                        <li class="navigation-divider"></li>
+                                        <li><a href="colors_pink.html">Pink palette</a></li>
+                                        <li><a href="colors_violet.html">Violet palette</a></li>
+                                        <li><a href="colors_purple.html">Purple palette</a></li>
+                                        <li><a href="colors_indigo.html">Indigo palette</a></li>
+                                        <li><a href="colors_blue.html">Blue palette</a></li>
+                                        <li><a href="colors_teal.html">Teal palette</a></li>
+                                        <li><a href="colors_green.html">Green palette</a></li>
+                                        <li><a href="colors_orange.html">Orange palette</a></li>
+                                        <li><a href="colors_brown.html">Brown palette</a></li>
+                                        <li><a href="colors_grey.html">Grey palette</a></li>
+                                        <li><a href="colors_slate.html">Slate palette</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="#"><i class="fa fa-lightbulb-o"></i> <span>Support</span></a>
+                                    <ul>
+                                        <li><a href="starters/horizontal_nav.html">Horizontal navigation</a></li>
+                                        <li><a href="starters/1_col.html">1 column</a></li>
+                                        <li><a href="starters/2_col.html">2 columns</a></li>
+                                        <li>
+                                            <a href="#">3 columns</a>
+                                            <ul>
+                                                <li><a href="starters/3_col_dual.html">Dual sidebars</a></li>
+                                                <li><a href="starters/3_col_double.html">Double sidebars</a></li>
+                                            </ul>
+                                        </li>
+                                        <li><a href="starters/4_col.html">4 columns</a></li>
+                                        <li>
+                                            <a href="#">Detached layout</a>
+                                            <ul>
+                                                <li><a href="starters/detached_left.html">Left sidebar</a></li>
+                                                <li><a href="starters/detached_right.html">Right sidebar</a></li>
+                                                <li><a href="starters/detached_sticky.html">Sticky sidebar</a></li>
+                                            </ul>
+                                        </li>
+                                        <li><a href="starters/layout_boxed.html">Boxed layout</a></li>
+                                        <li class="navigation-divider"></li>
+                                        <li><a href="starters/layout_navbar_fixed_main.html">Fixed main navbar</a></li>
+                                        <li><a href="starters/layout_navbar_fixed_secondary.html">Fixed secondary navbar</a></li>
+                                        <li><a href="starters/layout_navbar_fixed_both.html">Both navbars fixed</a></li>
+                                        <li><a href="starters/layout_fixed.html">Fixed layout</a></li>
+                                    </ul>
+                                </li>
+
+                                <!-- /main -->
+
+
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- /main navigation -->
+
+                </div>
+            </div>
+            <!-- /main sidebar -->
+
+
+            <!-- Main content -->
+            <div class="content-wrapper">
+
+                <!-- Page header -->
+                <div class="page-header">
+                    <div class="page-header-content">
+                        <div class="page-title">
+                            <h4 class="text-center">Bienvenue sur RPGBank</h4>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- /page header -->
+
+
+                <!-- Content area -->
+                <div class="content">
+
+
+                    {% block body %}{% endblock %}
+
+
+                    <!-- Footer -->
+                    <div class="footer text-muted">
+                        &copy; 2015. <a href="{{ path('homepage') }}">RPGBank</a> by Taikpaf
+                    </div>
+                    <!-- /footer -->
+
+                </div>
+                <!-- /content area -->
+
+            </div>
+            <!-- /main content -->
+
+        </div>
+        <!-- /page content -->
+
+    </div>
+    <!-- /page container -->
+
+    </body>
+
+</html>

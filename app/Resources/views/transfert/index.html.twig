@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Relevé bancaire :</h1>
+
+    <div class="col-md-12">
+        <div class="panel-body">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>N° virement</th>
+                        <th>Le :</th>
+                        <th>Vers </th>
+                        <th>De </th>
+                        <th></th>
+                        <th></th>
+
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for transfert in transferts %}
+                        <tr>
+                            <td>{{ transfert.id }}</td>
+                            <td>{{ transfert.date|date('d-m-Y') }}</td>
+                            <td>{{ transfert.crediteur.user.username }}</td>
+                            <td>{{ transfert.debiteur.user.username }}</td>
+
+                            {% if transfert.crediteur.user.username == app.user %}
+
+                                <td><span class="label label-success">+ {{ transfert.somme }} €</span></td>
+                                <td></td>
+                            {% else %}
+                                <td></td>
+                                <td><span class="label label-danger">- {{ transfert.somme }} €</span></td>
+                            {% endif %}
+                        </tr>
+                    {% endfor %}
+
+                    </tbody>
+                </table>
+            </div>
+
+    </div>
+        </div>
+
+{% endblock %}

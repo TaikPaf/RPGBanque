@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="col-md-6 text-center">
+        <section class="panel">
+            <header class="panel-heading">
+                Création de facture
+            </header>
+            <div class="panel-body">
+                {{ form_start(form) }}
+                    <div class="form-group">
+
+                        {{ form_label(form.nomSociete, 'Nom de votre société') }}
+                        {{ form_errors(form.nomSociete) }}
+                        {{ form_widget(form.nomSociete, { 'attr': {'class': 'form-control'} }) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(form.labelarticle, 'Liste des articles achetés') }}
+                        {{ form_errors(form.labelarticle) }}
+                        {{ form_widget(form.labelarticle, { 'attr': {'class': 'form-control'} }) }}
+                    </div>
+
+                <div class="form-group">
+                    {{ form_label(form.transfert.debiteur, "Nom de l'acheteur") }}
+                    {{ form_errors(form.transfert.debiteur) }}
+                    {{ form_widget(form.transfert.debiteur, { 'attr': {'class': 'form-control'} }) }}
+                </div>
+
+                <div class="form-group">
+                    {{ form_label(form.transfert.somme, "Montant total") }}
+                    {{ form_errors(form.transfert.somme) }}
+                    {{ form_widget(form.transfert.somme, { 'attr': {'class': 'form-control'} }) }}
+                </div>
+                <div class="form-group">
+
+                    {{ form_errors(form.transfert.crediteur) }}
+                    {{ form_widget(form.transfert.crediteur, { 'attr': {'style': 'display:none'} }) }}
+                </div>
+
+                    <button type="submit" class="btn btn-info">Envoyer</button>
+                {{ form_end(form) }}
+
+            </div>
+        </section>
+    </div>
+
+{% endblock %}

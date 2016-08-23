@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="col-md-12">
+        <section class="panel">
+            <div class="panel-heading">
+                FACTURE(S) PAYEE(S)
+            </div>
+
+            <div class="panel-body">
+                <section id="flip-scroll">
+                    <table class="table table-bordered table-striped table-condensed cf">
+                        <thead class="cf">
+                        <tr>
+                            <th>N° de facture</th>
+                            <th>Société</th>
+                            <th> Le :</th>
+                            <th>Article(s)</th>
+                            <th class="numeric ">Montant</th>
+
+
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for facture in factureWait %}
+                            <tr>
+                                <td>{{ facture.id }}</td>
+
+                                <td>{{ facture.NomSociete }}</td>
+                                <td>{{facture.dateachat|date('d-m-Y') }}</td>
+                                <td>{{ facture.labelarticle }}</td>
+                                <td class="numeric"> {{ facture.transfert.somme }} H$</td>
+
+                            </tr>
+                        {% endfor %}
+
+                        </tbody>
+                    </table>
+
+                </section>
+            </div>
+        </section>
+
+    </div>
+{% endblock %}

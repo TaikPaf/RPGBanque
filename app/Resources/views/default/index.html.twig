@@ -1,0 +1,150 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="row state-overview">
+        <div class="col-lg-6 col-sm-6">
+            <div class="panel panel-white border-left-lg border-left-danger">
+                <div class="panel-heading">
+                    <h6 class="panel-title text-center">MES FACTURES</h6>
+                </div>
+
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>Société</th>
+                                <th>Le :</th>
+                                <th>Article(s)</th>
+                                <th>Montant</th>
+                                <th>Statut</th>
+
+
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for facture in factures %}
+                            <tr>
+                                <td>{{ facture.nomSociete }}</td>
+                                <td>{{ facture.dateachat|date('d-m-Y') }}</td>
+                                <td>{{ facture.labelarticle }}</td>
+                                <td>{{ facture.transfert.somme }} H$</td>
+                                {% if facture.isvalide == true %}
+                                <td><span class="label label-success">Payée</span></td>
+                                {% else %}
+                                <td><span class="label label-danger">Non payée</span></td>
+                                {% endif %}
+                            </tr>
+                            {% endfor %}
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 col-sm-6">
+            <div class="panel panel-white border-left-lg border-left-danger">
+                <div class="panel-heading">
+                    <h6 class="panel-title text-center">MON SOLDE</h6>
+                </div>
+
+
+                <div class=panel-body">
+                    <script>
+                        $(function () {
+                            $('#containerchart').highcharts({
+                                chart:{
+                                    type:'area'
+                                },
+                                title: {
+                                    text: 'Votre solde actuel : {{ comptecourant.solde }} H$',
+                                    x: -20 //center
+                                },
+
+
+                                yAxis: {
+                                    title: {
+                                        text: 'Euros (€)'
+                                    },
+                                    plotLines: [{
+                                        value: 0,
+                                        width: 1,
+                                        color: '#6C7A89'
+                                    }]
+                                },
+                                tooltip: {
+                                    valueSuffix: '€'
+                                },
+
+                                series: [{
+                                    name: 'solde',
+                                    color: '#6C7A89',
+                                    data: {{ stats }}
+                                }]
+                            });
+                        });
+                    </script>
+                    <div id="containerchart" style="width:100%; height:400px;"></div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+<div class="col-md-12">
+    <div class="panel panel-white border-left-lg border-left-danger">
+        <div class="panel-heading">
+            <h6 class="panel-title text-center">MES TRANSFERTS</h6>
+        </div>
+
+        <div class="panel-body">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>N° virement</th>
+                        <th>Le :</th>
+                        <th>Vers </th>
+                        <th>De </th>
+                        <th></th>
+                        <th></th>
+
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for transfert in transferts %}
+                        <tr>
+                            <td>{{ transfert.id }}</td>
+                            <td>{{ transfert.date|date('d-m-Y') }}</td>
+                            <td>{{ transfert.crediteur.user.username }}</td>
+                            <td>{{ transfert.debiteur.user.username }}</td>
+
+                            {% if transfert.crediteur.user.username == app.user %}
+
+                                <td><span class="label label-success">+ {{ transfert.somme }} H$</span></td>
+                                <td></td>
+                            {% else %}
+                                <td></td>
+                                <td><span class="label label-danger">- {{ transfert.somme }} H$</span></td>
+                            {% endif %}
+                        </tr>
+                    {% endfor %}
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    </div>
+
+
+
+
+
+
+{% endblock %}
