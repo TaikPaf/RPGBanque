@@ -1,4 +1,6 @@
 Banque
 ======
 
-A Symfony project created on August 5, 2016, 10:20 am.
+Application web de système monétaire.
+L'objectif est de permettre à toute sorte de RPG d'utiliser une monnaie pour effectuer des transactions et autres.
+
