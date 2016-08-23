@@ -48,13 +48,13 @@ class FactureRepository extends EntityRepository
         return $qb->getQuery()->getSingleScalarResult();
     }
 
-    public function allFacturesAcheteur($comptecourant){
+    public function allFacturesAcheteur($comptecourant, $nb){
         $qb = $this->createQueryBuilder('f');
 
         $qb->join('f.transfert','t')
             ->where('t.debiteur = :compte')
             ->setParameter('compte', $comptecourant)
-            ->setMaxResults(10);
+            ->setMaxResults($nb);
 
         return $qb->getQuery()->getResult();
     }

@@ -1,85 +1,105 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="fr"><head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="Mosaddek">
-    <meta name="keyword" content="FlatLab, Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
-    <link rel="shortcut icon" href="img/favicon.png">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>RPGBank - Connexion</title>
 
-    <title>FlatLab - Flat & Responsive Bootstrap Admin Template</title>
+    <!-- Global stylesheets -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
+    <link href="{{ asset('assets/css/icons/icomoon/styles.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('assets/css/bootstrap.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('assets/css/core.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('assets/css/components.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('assets/css/colors.css') }}" rel="stylesheet" type="text/css">
+    <!-- /global stylesheets -->
 
-    <!-- Bootstrap core CSS -->
-    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/bootstrap-reset.css') }}" rel="stylesheet">
-    <!--external css-->
-    <link href="{{ asset('assets/font-awesome/css/font-awesome.css') }}" rel="stylesheet" />
-    <!-- Custom styles for this template -->
-    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/style-responsive.css') }}" rel="stylesheet" />
+    <!-- Core JS files -->
+    <script type="text/javascript" src="{{ asset('assets/js/plugins/loaders/pace.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/js/core/libraries/jquery.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/js/core/libraries/bootstrap.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/js/plugins/loaders/blockui.min.js') }}"></script>
+    <!-- /core JS files -->
 
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 tooltipss and media queries -->
-    <!--[if lt IE 9]>
-    <script src="js/html5shiv.js"></script>
-    <script src="js/respond.min.js"></script>
-    <![endif]-->
+
+    <!-- Theme JS files -->
+    <script type="text/javascript" src="{{ asset('assets/js/core/app.js') }}"></script>
+    <!-- /theme JS files -->
+
 </head>
 
-<body class="login-body">
+<body class="login-container  pace-done"><div class="pace  pace-inactive"><div class="pace-progress" data-progress-text="100%" data-progress="99" style="transform: translate3d(100%, 0px, 0px);">
+        <div class="pace-progress-inner"></div>
+    </div>
+    <div class="pace-activity"></div></div>
 
-<div class="container">
+<!-- Main navbar -->
 
-    <form class="form-signin" action="{{ path("fos_user_security_check") }}" method="post">
-        <h2 class="form-signin-heading">Formulaire de connexion</h2>
-        <div class="login-wrap">
-            <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
-            <input type="text" class="form-control" placeholder="Votre pseudo" autofocus  id="username" name="_username"  required="required">
-            <input type="password" class="form-control" placeholder="Mot de passe" id="password" name="_password" required="required">
+<!-- Page container -->
+<div class="page-container" style="min-height:565px">
 
-            <button class="btn btn-lg btn-login btn-block"type="submit" id="_submit" name="_submit">Se connecter</button>
+    <!-- Page content -->
+    <div class="page-content">
 
-            <div class="registration">
-                Pas encore de compte ?
-                <a class="" href="{{ path('fos_user_registration_register') }}">
-                    S'enregistrer
-                </a>
-            </div>
+        <!-- Main content -->
+        <div class="content-wrapper">
 
-        </div>
+            <!-- Content area -->
+            <div class="content">
 
-        <!-- Modal -->
-        <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal" class="modal fade">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        <h4 class="modal-title">Forgot Password ?</h4>
+                <!-- Simple login form -->
+                <form action="{{ path("fos_user_security_check") }}" method="post">
+                    <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+                    <div class="panel panel-body login-form">
+                        <div class="text-center">
+                            <div class="icon-object border-slate-300 text-slate-300"><i class="icon-reading"></i></div>
+                            <h5 class="content-group">Connexion à votre compte </h5>
+                        </div>
+
+                        <div class="form-group has-feedback has-feedback-left">
+                            <input type="text" class="form-control" placeholder="Votre pseudo" autofocus  id="username" name="_username"  required="required">
+                            <div class="form-control-feedback">
+                                <i class="icon-user text-muted"></i>
+                            </div>
+                        </div>
+
+                        <div class="form-group has-feedback has-feedback-left">
+                            <input type="password" class="form-control" placeholder="Mot de passe" id="password" name="_password" required="required">
+                            <div class="form-control-feedback">
+                                <i class="icon-lock2 text-muted"></i>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary btn-block">Connexion<i class="icon-circle-right2 position-right"></i></button>
+                        </div>
+
+                        <div class="text-center">
+                            <a href="{{ path('fos_user_resetting_request') }}">Mot de passe oublié ?</a>
+                            <a href="{{ path('fos_user_registration_register') }}">Pas encore de compte ?</a>
+                        </div>
                     </div>
-                    <div class="modal-body">
-                        <p>Enter your e-mail address below to reset your password.</p>
-                        <input type="text" name="email" placeholder="Email" autocomplete="off" class="form-control placeholder-no-fix">
+                </form>
+                <!-- /simple login form -->
 
-                    </div>
-                    <div class="modal-footer">
-                        <button data-dismiss="modal" class="btn btn-default" type="button">Cancel</button>
-                        <button class="btn btn-success" type="button">Submit</button>
-                    </div>
+
+                <!-- Footer -->
+                <div class="footer text-muted text-center">
+                    © 2015. RPGBank
                 </div>
-            </div>
-        </div>
-        <!-- modal -->
+                <!-- /footer -->
 
-    </form>
+            </div>
+            <!-- /content area -->
+
+        </div>
+        <!-- /main content -->
+
+    </div>
+    <!-- /page content -->
 
 </div>
+<!-- /page container -->
 
 
 
-<!-- js placed at the end of the document so the pages load faster -->
-<script src="{{ asset('js/jquery.js') }}"></script>
-<script src="{{ asset('js/bootstrap.min.js') }}"></script>
-
-
-</body>
-</html>
+</body></html>

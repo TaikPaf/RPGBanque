@@ -11,8 +11,9 @@
                     <tr>
                         <th>N° virement</th>
                         <th>Le :</th>
-                        <th>Vers </th>
                         <th>De </th>
+                        <th>Vers </th>
+                        <th>Motif</th>
                         <th></th>
                         <th></th>
 
@@ -24,8 +25,10 @@
                         <tr>
                             <td>{{ transfert.id }}</td>
                             <td>{{ transfert.date|date('d-m-Y') }}</td>
-                            <td>{{ transfert.crediteur.user.username }}</td>
                             <td>{{ transfert.debiteur.user.username }}</td>
+                            <td>{{ transfert.crediteur.user.username }}</td>
+                            <td>{{ transfert.motif }}</td>
+
 
                             {% if transfert.crediteur.user.username == app.user %}
 

@@ -17,6 +17,7 @@ class TransfertType extends AbstractType
     {
         $builder
             ->add('somme')
+            ->add('motif')
             ->add('crediteur', EntityType::class, array(
                 // query choices from this entity
                 'class' => 'BanqueBundle:CompteCourant',

@@ -22,6 +22,11 @@
                     {{ form_widget(form.somme, { 'attr': {'class': 'form-control'} }) }}
                 </div>
                 <div>
+                    {{ form_label(form.motif, 'Motif du virement') }}
+                    {{ form_errors(form.motif) }}
+                    {{ form_widget(form.motif, { 'attr': {'class': 'form-control'} }) }}
+                </div>
+                <div>
                     {{ form_label(form.crediteur, 'Nom du destinataire') }}
                     {{ form_errors(form.crediteur) }}
                     {{ form_widget(form.crediteur, { 'attr': {'class': 'form-control'} }) }}

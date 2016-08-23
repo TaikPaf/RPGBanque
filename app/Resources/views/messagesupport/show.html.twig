@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>MessageSupport</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ messageSupport.id }}</td>
+            </tr>
+            <tr>
+                <th>Title</th>
+                <td>{{ messageSupport.title }}</td>
+            </tr>
+            <tr>
+                <th>Content</th>
+                <td>{{ messageSupport.content }}</td>
+            </tr>
+            <tr>
+                <th>Date</th>
+                <td>{{ messageSupport.date }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('support_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('support_edit', { 'id': messageSupport.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

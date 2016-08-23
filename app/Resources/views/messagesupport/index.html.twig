@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>MessageSupport list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Content</th>
+                <th>Date</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for messageSupport in messageSupports %}
+            <tr>
+                <td><a href="{{ path('support_show', { 'id': messageSupport.id }) }}">{{ messageSupport.id }}</a></td>
+                <td>{{ messageSupport.title }}</td>
+                <td>{{ messageSupport.content }}</td>
+                <td>{{ messageSupport.date }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('support_show', { 'id': messageSupport.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('support_edit', { 'id': messageSupport.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('support_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

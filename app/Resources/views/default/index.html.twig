@@ -4,6 +4,22 @@
 
     <div class="row state-overview">
         <div class="col-lg-6 col-sm-6">
+            <div class="panel text-center panel-white border-left-lg border-left-danger">
+                <div class="panel-body">
+                    <div class="thumbnail">
+                        <div class="panel-heading">
+
+                        <div class="thumb ">
+                            <i class="fa fa-money fa-5x"></i>
+                        </div>
+
+                        <div class="btn-success">
+                           Vous avez : {{ comptecourant.solde }} H$
+                        </div>
+                            </div>
+                    </div>
+                </div>
+            </div>
             <div class="panel panel-white border-left-lg border-left-danger">
                 <div class="panel-heading">
                     <h6 class="panel-title text-center">MES FACTURES</h6>
@@ -25,17 +41,17 @@
                             </thead>
                             <tbody>
                             {% for facture in factures %}
-                            <tr>
-                                <td>{{ facture.nomSociete }}</td>
-                                <td>{{ facture.dateachat|date('d-m-Y') }}</td>
-                                <td>{{ facture.labelarticle }}</td>
-                                <td>{{ facture.transfert.somme }} H$</td>
-                                {% if facture.isvalide == true %}
-                                <td><span class="label label-success">Payée</span></td>
-                                {% else %}
-                                <td><span class="label label-danger">Non payée</span></td>
-                                {% endif %}
-                            </tr>
+                                <tr>
+                                    <td>{{ facture.nomSociete }}</td>
+                                    <td>{{ facture.dateachat|date('d-m-Y') }}</td>
+                                    <td>{{ facture.labelarticle }}</td>
+                                    <td>{{ facture.transfert.somme }} H$</td>
+                                    {% if facture.isvalide == true %}
+                                        <td><span class="label label-success">Payée</span></td>
+                                    {% else %}
+                                        <td><span class="label label-danger">Non payée</span></td>
+                                    {% endif %}
+                                </tr>
                             {% endfor %}
 
                             </tbody>
@@ -43,7 +59,15 @@
                     </div>
                 </div>
             </div>
+
+
+                <!-- Available hours -->
+
+                <!-- /available hours -->
+
+
         </div>
+
         <div class="col-lg-6 col-sm-6">
             <div class="panel panel-white border-left-lg border-left-danger">
                 <div class="panel-heading">

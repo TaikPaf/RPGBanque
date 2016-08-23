@@ -29,6 +29,12 @@ class Transfert
     private $somme;
 
     /**
+     *
+     *
+     * @ORM\Column(name="motif", type="string")
+     */
+    private $motif;
+    /**
      * @var bool
      *
      * @ORM\Column(name="ValidationCrediteur", type="boolean", nullable=true)
@@ -62,6 +68,17 @@ class Transfert
      * @ORM\Column(name="date", type="date", nullable=false)
      */
     private $date;
+
+
+
+    public function getMotif(){
+        return $this->motif;
+    }
+
+    public function setMotif($motif){
+        $this->motif = $motif;
+        return $this;
+    }
 
     public function getDate(){
         return $this->date;

@@ -78,9 +78,7 @@
                     </a>
 
                     <ul class="dropdown-menu dropdown-menu-right">
-                        <li><a href="#"><i class="icon-user-plus"></i> My profile</a></li>
-                        <li><a href="#"><span class="badge bg-teal-400 pull-right">58</span> <i class="icon-comment-discussion"></i> Messages</a></li>
-                        <li class="divider"></li>
+
                         <li><a href="{{ path('fos_user_security_logout') }}"><i class="icon-switch2"></i> Logout</a></li>
                     </ul>
                 </li>
@@ -146,56 +144,12 @@
 
                                     </ul>
                                 </li>
-                                <li>
-                                    <a href="#"><i class="fa fa-gears"></i> <span>Mon compte</span></a>
-                                    <ul>
-                                        <li><a href="colors_primary.html">Primary palette</a></li>
-                                        <li><a href="colors_danger.html">Danger palette</a></li>
-                                        <li><a href="colors_success.html">Success palette</a></li>
-                                        <li><a href="colors_warning.html">Warning palette</a></li>
-                                        <li><a href="colors_info.html">Info palette</a></li>
-                                        <li class="navigation-divider"></li>
-                                        <li><a href="colors_pink.html">Pink palette</a></li>
-                                        <li><a href="colors_violet.html">Violet palette</a></li>
-                                        <li><a href="colors_purple.html">Purple palette</a></li>
-                                        <li><a href="colors_indigo.html">Indigo palette</a></li>
-                                        <li><a href="colors_blue.html">Blue palette</a></li>
-                                        <li><a href="colors_teal.html">Teal palette</a></li>
-                                        <li><a href="colors_green.html">Green palette</a></li>
-                                        <li><a href="colors_orange.html">Orange palette</a></li>
-                                        <li><a href="colors_brown.html">Brown palette</a></li>
-                                        <li><a href="colors_grey.html">Grey palette</a></li>
-                                        <li><a href="colors_slate.html">Slate palette</a></li>
-                                    </ul>
-                                </li>
+
                                 <li>
                                     <a href="#"><i class="fa fa-lightbulb-o"></i> <span>Support</span></a>
                                     <ul>
-                                        <li><a href="starters/horizontal_nav.html">Horizontal navigation</a></li>
-                                        <li><a href="starters/1_col.html">1 column</a></li>
-                                        <li><a href="starters/2_col.html">2 columns</a></li>
-                                        <li>
-                                            <a href="#">3 columns</a>
-                                            <ul>
-                                                <li><a href="starters/3_col_dual.html">Dual sidebars</a></li>
-                                                <li><a href="starters/3_col_double.html">Double sidebars</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><a href="starters/4_col.html">4 columns</a></li>
-                                        <li>
-                                            <a href="#">Detached layout</a>
-                                            <ul>
-                                                <li><a href="starters/detached_left.html">Left sidebar</a></li>
-                                                <li><a href="starters/detached_right.html">Right sidebar</a></li>
-                                                <li><a href="starters/detached_sticky.html">Sticky sidebar</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><a href="starters/layout_boxed.html">Boxed layout</a></li>
-                                        <li class="navigation-divider"></li>
-                                        <li><a href="starters/layout_navbar_fixed_main.html">Fixed main navbar</a></li>
-                                        <li><a href="starters/layout_navbar_fixed_secondary.html">Fixed secondary navbar</a></li>
-                                        <li><a href="starters/layout_navbar_fixed_both.html">Both navbars fixed</a></li>
-                                        <li><a href="starters/layout_fixed.html">Fixed layout</a></li>
+                                        <li><a href="{{ path('support_new') }}">Nouveau message support</a></li>
+                                        <li><a href="{{ path('support_index') }}">Historique</a></li>
                                     </ul>
                                 </li>
 

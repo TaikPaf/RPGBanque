@@ -30,7 +30,7 @@ class DefaultController extends Controller
         
         $nbfactureWait = $em->getRepository('BanqueBundle:Facture')->getNbFactureWaiting($compteCourant);
         
-        $factures = $em->getRepository('BanqueBundle:Facture')->allFacturesAcheteur($compteCourant);
+        $factures = $em->getRepository('BanqueBundle:Facture')->allFacturesAcheteur($compteCourant,2);
 
         $stats = $em->getRepository('BanqueBundle:StatSolde')->findBy(array(), array("id" => 'ASC'), 20);
         
